@@ -1,0 +1,25 @@
+=== RELATÓRIO DE INCIDENTE — SESSÃO 4 ===
+Data: Sat Jul  4 18:27:58 -01 2026
+Analista: claudiagomes
+
+--- DIAGNÓSTICO: PROCESSOS ---
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+claudia+    3476  350  0.1   7160  4484 pts/5    R+   18:27   0:00 ps aux --sort=-%cpu
+claudia+    1830 99.9  0.0   4948  3644 pts/4    R    17:02  85:45 bash -c while true; do :; done
+claudia+    3414 11.9  0.1   6240  5600 pts/5    Ss   18:27   0:00 -bash
+root        3410  0.2  0.0   3204  1132 ?        S    18:27   0:00 /init
+root          93  0.1  0.3  35252 12224 ?        Ss   16:07   0:16 /usr/lib/systemd/systemd-udevd
+root          46  0.1  0.6  83180 24616 ?        S<s  16:07   0:11 /usr/lib/systemd/systemd-journald
+root           1  0.0  0.4  24252 15536 ?        Ss   16:07   0:03 /sbin/init
+_chrony      224  0.0  0.3  24436 11972 ?        S    16:07   0:02 /usr/sbin/chronyd -n -F 1 -x
+claudia+    2956  0.0  0.1   6240  5616 pts/2    Ss+  18:06   0:00 -bash
+--- ACÇÕES TOMADAS ---
+1. Processo identificado: PID=1850 Comando=bash -c 'while true; do :; done' &
+2. SIGTERM enviado: kill PID → ignorado pelo processo
+3. SIGKILL enviado: kill -9 PID → processo terminado
+--- LOGS DE AUTENTICAÇÃO ---
+2026-07-04T16:41:04.717908-01:00 FelipaDuarte su[1378]: pam_systemd(su:session): Failed to check if /run/user/1001/bus exists, ignoring: Permission denied
+2026-07-04T16:42:34.874552-01:00 FelipaDuarte su[1458]: pam_systemd(su:session): Failed to check if /run/user/1002/bus exists, ignoring: Permission denied
+2026-07-04T18:12:08.005055-01:00 FelipaDuarte sudo: claudiagomes : TTY=/dev/pts/2 ; PWD=/home/claudiagomes ; USER=root ; COMMAND=/usr/bin/grep Failed\\|Invalid\\|FAILED /var/log/auth.log
+2026-07-04T18:12:17.601792-01:00 FelipaDuarte sudo: claudiagomes : TTY=/dev/pts/2 ; PWD=/home/claudiagomes ; USER=root ; COMMAND=/usr/bin/grep Failed\\|Invalid /var/log/auth.log
+2026-07-04T18:27:29.889420-01:00 FelipaDuarte sudo: claudiagomes : TTY=/dev/pts/5 ; PWD=/home/claudiagomes ; USER=root ; COMMAND=/usr/bin/grep Failed /var/log/auth.log
